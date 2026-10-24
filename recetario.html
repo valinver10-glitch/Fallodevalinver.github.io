@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Recetas fresquitas | Mousse y ensalada</title>
+<style>
+  :root {
+    --coral: #f27f78;
+    --coral-dark: #c95755;
+    --coral-pale: #fff0ed;
+    --green: #dcefd9;
+    --green-dark: #527c58;
+    --green-pale: #f3faf0;
+    --cream: #fffdf8;
+    --ink: #35443a;
+    --muted: #68766b;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    color: var(--ink);
+    background: var(--cream);
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    line-height: 1.65;
+  }
+  header {
+    background: linear-gradient(135deg, var(--coral-pale), var(--green-pale));
+    padding: 28px 18px 46px;
+    text-align: center;
+    border-bottom: 5px solid var(--green);
+  }
+  .top-label {
+    display: inline-block;
+    background: white;
+    color: var(--coral-dark);
+    border: 1px solid #f7c4be;
+    border-radius: 999px;
+    padding: 6px 14px;
+    font-size: .82rem;
+    font-weight: bold;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 15px auto 8px;
+    max-width: 800px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.2rem, 6vw, 4.1rem);
+    line-height: 1.08;
+    color: var(--coral-dark);
+  }
+  header p { max-width: 650px; margin: 12px auto 0; color: var(--muted); font-size: 1.05rem; }
+  nav {
+    display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;
+    margin-top: 24px;
+  }
+  nav a {
+    text-decoration: none; color: var(--green-dark); font-weight: bold;
+    background: white; border: 1px solid #c9e3c5; border-radius: 12px;
+    padding: 10px 16px; transition: transform .2s, background .2s;
+  }
+  nav a:hover { transform: translateY(-2px); background: var(--green-pale); }
+  main { width: min(1100px, 92%); margin: 34px auto 60px; }
+  .intro {
+    text-align: center; max-width: 760px; margin: 0 auto 30px;
+  }
+  .intro h2 { font-family: Georgia, serif; font-size: 1.8rem; margin-bottom: 5px; }
+  .intro p { color: var(--muted); margin-top: 0; }
+  .recipe {
+    display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 0;
+    background: white; border-radius: 24px; overflow: hidden;
+    box-shadow: 0 12px 35px rgba(65, 83, 61, .09);
+    margin: 28px 0 38px; border: 1px solid #edf0e7;
+  }
+  .recipe:nth-of-type(2) { grid-template-columns: 1.15fr .85fr; }
+  .recipe:nth-of-type(2) .visual { order: 2; }
+  .visual {
+    min-height: 310px; padding: 30px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    background: var(--coral-pale);
+  }
+  .recipe:nth-of-type(2) .visual { background: var(--green-pale); }
+  .food-emoji { font-size: clamp(5rem, 11vw, 8rem); line-height: 1.2; filter: drop-shadow(0 7px 3px rgba(70,70,40,.08)); }
+  .visual h2 { font-family: Georgia, serif; font-size: 1.8rem; margin: 14px 0 4px; color: var(--coral-dark); }
+  .recipe:nth-of-type(2) .visual h2 { color: var(--green-dark); }
+  .visual p { margin: 0; color: var(--muted); }
+  .details { padding: clamp(22px, 4vw, 38px); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .chip { background: var(--green-pale); color: var(--green-dark); border-radius: 8px; padding: 5px 10px; font-size: .85rem; font-weight: bold; }
+  .recipe:first-of-type .chip { background: var(--coral-pale); color: var(--coral-dark); }
+  h3 { color: var(--green-dark); margin: 18px 0 8px; font-size: 1.15rem; }
+  .recipe:first-of-type h3 { color: var(--coral-dark); }
+  ul, ol { padding-left: 23px; margin-top: 8px; }
+  li { padding-left: 3px; margin: 7px 0; }
+  li::marker { color: var(--coral); font-weight: bold; }
+  .recipe:nth-of-type(2) li::marker { color: var(--green-dark); }
+  .note {
+    margin-top: 20px; padding: 13px 15px; border-left: 4px solid var(--coral);
+    background: var(--coral-pale); border-radius: 0 10px 10px 0; font-size: .95rem;
+  }
+  .recipe:nth-of-type(2) .note { border-left-color: var(--green-dark); background: var(--green-pale); }
+  .closing {
+    text-align: center; padding: 30px 20px; border-radius: 20px;
+    background: linear-gradient(135deg, var(--green-pale), var(--coral-pale));
+  }
+  .closing h2 { font-family: Georgia, serif; color: var(--green-dark); margin: 0 0 7px; }
+  .closing p { margin: 0 auto; max-width: 650px; }
+  footer { text-align: center; color: var(--muted); padding: 22px 15px; font-size: .9rem; }
+  @media (max-width: 720px) {
+    .recipe, .recipe:nth-of-type(2) { grid-template-columns: 1fr; }
+    .recipe:nth-of-type(2) .visual { order: 0; }
+    .visual { min-height: 230px; }
+  }
+  @media print {
+    body { background: white; }
+    nav { display: none; }
+    .recipe { break-inside: avoid; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<header>
+  <span class="top-label">Recetario saludable · Fácil y delicioso</span>
+  <h1>Un poquito de sabor,<br>un montón de cariño</h1>
+  <p>Dos recetas sencillas, coloridas y deliciosas: un mousse frutal con cacao y una ensalada fresca de brócoli, huevo y papa.</p>
+  <nav aria-label="Navegación de recetas">
+    <a href="#mousse">🍓 Mousse de frutas</a>
+    <a href="#ensalada">🥦 Ensalada fresca</a>
+  </nav>
+</header>
+
+<main>
+  <section class="intro">
+    <h2>¡Manos a la cocina!</h2>
+    <p>Lee los ingredientes antes de comenzar, lava bien las frutas y verduras y pide ayuda de una persona adulta al usar la cocina o los utensilios calientes.</p>
+  </section>
+
+  <section class="recipe" id="mousse">
+    <div class="visual">
+      <div class="food-emoji" role="img" aria-label="Fresas, plátano y cacao">🍓🍌</div>
+      <h2>Mousse de plátano, fresa y cacao</h2>
+      <p>Cremoso, frutal y con un toque de chocolate.</p>
+    </div>
+    <div class="details">
+      <div class="chips"><span class="chip">⏱ 15 minutos + frío</span><span class="chip">🍽 2 porciones</span><span class="chip">Fácil</span></div>
+      <h3>Ingredientes</h3>
+      <ul>
+        <li>1 plátano maduro.</li>
+        <li>1 taza de fresas lavadas y sin hojas.</li>
+        <li>½ taza de yogur natural.</li>
+        <li>1 cucharadita de cacao en polvo sin azúcar.</li>
+        <li>1 cucharadita de miel o azúcar (opcional).</li>
+      </ul>
+      <h3>Preparación paso a paso</h3>
+      <ol>
+        <li>Pela el plátano y córtalo en rodajas.</li>
+        <li>Lava las fresas, retira sus hojas y córtalas en trozos.</li>
+        <li>Coloca el plátano, las fresas, el yogur y el cacao en una licuadora.</li>
+        <li>Licúa hasta conseguir una mezcla suave y cremosa. Prueba y añade un poco de miel si lo deseas.</li>
+        <li>Reparte la mezcla en dos vasitos y refrigera durante 1 hora para que esté bien fresca.</li>
+        <li>Decora con trocitos de fresa o una pizca de cacao y ¡a disfrutar!</li>
+      </ol>
+      <div class="note"><strong>Consejito:</strong> si quieres una textura más espesa, usa el plátano previamente congelado y licúa poco a poco.</div>
+    </div>
+  </section>
+
+  <section class="recipe" id="ensalada">
+    <div class="visual">
+      <div class="food-emoji" role="img" aria-label="Brócoli, huevo y papa">🥦🥚🥔</div>
+      <h2>Ensalada de brócoli con huevo y papa</h2>
+      <p>Una combinación sencilla, colorida y llenadora.</p>
+    </div>
+    <div class="details">
+      <div class="chips"><span class="chip">⏱ 25–35 minutos</span><span class="chip">🍽 2 porciones</span><span class="chip">Fácil</span></div>
+      <h3>Ingredientes</h3>
+      <ul>
+        <li>1 taza y media de brócoli en ramitos.</li>
+        <li>2 huevos.</li>
+        <li>2 papas medianas.</li>
+        <li>1 cucharada de aceite de oliva o vegetal.</li>
+        <li>Jugo de ½ limón.</li>
+        <li>Sal y pimienta al gusto.</li>
+      </ul>
+      <h3>Preparación paso a paso</h3>
+      <ol>
+        <li>Lava bien el brócoli y las papas. Coloca las papas en una olla con agua y cocínalas hasta que estén suaves.</li>
+        <li>En otra olla, cocina los huevos en agua hirviendo durante unos 10–12 minutos. Déjalos enfriar antes de pelarlos.</li>
+        <li>Cocina el brócoli al vapor o en agua hirviendo durante 4–6 minutos, hasta que esté tierno pero aún firme. Escúrrelo.</li>
+        <li>Cuando las papas estén listas y tibias, pélalas con cuidado y córtalas en cubos. Corta también los huevos en cuartos.</li>
+        <li>Coloca el brócoli, las papas y los huevos en un recipiente amplio.</li>
+        <li>Mezcla el aceite, el jugo de limón, una pizca de sal y pimienta. Vierte el aliño sobre la ensalada y combina suavemente.</li>
+      </ol>
+      <div class="note"><strong>Consejito:</strong> deja que los ingredientes se enfríen un poco antes de mezclarlos para que la ensalada conserve mejor su forma. Refrigera lo que sobre.</div>
+    </div>
+  </section>
+
+  <section class="closing">
+    <h2>Pequeños pasos, grandes sabores 🌿</h2>
+    <p>Preparar recetas en casa puede ser una forma divertida de aprender, compartir y disfrutar alimentos variados. ¡Buen provecho!</p>
+  </section>
+</main>
+<footer>Hecho con cariño · Recetario de dos recetas</footer>
+</body>
+</html>
